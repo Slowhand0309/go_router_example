@@ -1,16 +1,9 @@
 # go_router_example
+go_router / go_router_builder and BottomNavigationBar building guide
 
-A new Flutter project.
+- [go_router](https://pub.dev/packages/go_router)
+- [go_router_builder](https://pub.dev/documentation/go_router_builder/latest/)
 
-## Getting Started
+# Screenshot
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="art/screenshot.gif" width="300" />

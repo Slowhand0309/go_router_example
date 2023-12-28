@@ -11,23 +11,39 @@ final router = GoRouter(
   initialLocation: HomeRoute.path,
 );
 
-@TypedShellRoute<TopShellRoute>(
-  routes: <TypedRoute<RouteData>>[
-    TypedGoRoute<HomeRoute>(path: HomeRoute.path),
-    TypedGoRoute<SettingsRoute>(path: SettingsRoute.path),
+@TypedStatefulShellRoute<TopShellRoute>(
+  branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
+    TypedStatefulShellBranch<HomeShellBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<HomeRoute>(path: HomeRoute.path),
+      ],
+    ),
+    TypedStatefulShellBranch<SettingsShellBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<SettingsRoute>(path: SettingsRoute.path),
+      ],
+    ),
   ],
 )
-class TopShellRoute extends ShellRouteData {
+class TopShellRoute extends StatefulShellRouteData {
   const TopShellRoute();
 
   @override
   Widget builder(
     BuildContext context,
     GoRouterState state,
-    Widget navigator,
+    StatefulNavigationShell navigator,
   ) {
-    return TopPage(child: navigator);
+    return TopPage(navigationShell: navigator);
   }
+}
+
+class HomeShellBranchData extends StatefulShellBranchData {
+  const HomeShellBranchData();
+}
+
+class SettingsShellBranchData extends StatefulShellBranchData {
+  const SettingsShellBranchData();
 }
 
 @TypedGoRoute<HomeRoute>(

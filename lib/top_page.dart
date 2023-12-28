@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:go_router_example/router/router.dart';
+import 'package:go_router/go_router.dart';
 
 enum PageIndex { home, settings }
 
 class TopPage extends StatefulWidget {
-  const TopPage({required this.child, super.key});
+  const TopPage({required this.navigationShell, super.key});
 
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
   @override
   State<TopPage> createState() => _TopPageState();
 }
 
 class _TopPageState extends State<TopPage> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.child,
+      body: widget.navigationShell,
       bottomNavigationBar: _bottomNavigationBar(context),
     );
   }
 
   BottomNavigationBar _bottomNavigationBar(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: _selectedIndex,
+      currentIndex: widget.navigationShell.currentIndex,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -37,14 +35,10 @@ class _TopPageState extends State<TopPage> {
         ),
       ],
       onTap: (int index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-        if (index == PageIndex.home.index) {
-          const HomeRoute().go(context);
-        } else if (index == PageIndex.settings.index) {
-          const SettingsRoute().go(context);
-        }
+        widget.navigationShell.goBranch(
+          index,
+          initialLocation: index == widget.navigationShell.currentIndex,
+        );
       },
     );
   }

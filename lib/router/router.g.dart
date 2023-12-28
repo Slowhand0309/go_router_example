@@ -12,16 +12,24 @@ List<RouteBase> get $appRoutes => [
       $settingsRoute,
     ];
 
-RouteBase get $topShellRoute => ShellRouteData.$route(
+RouteBase get $topShellRoute => StatefulShellRouteData.$route(
       factory: $TopShellRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: '/home',
-          factory: $HomeRouteExtension._fromState,
+      branches: [
+        StatefulShellBranchData.$branch(
+          routes: [
+            GoRouteData.$route(
+              path: '/home',
+              factory: $HomeRouteExtension._fromState,
+            ),
+          ],
         ),
-        GoRouteData.$route(
-          path: '/settings',
-          factory: $SettingsRouteExtension._fromState,
+        StatefulShellBranchData.$branch(
+          routes: [
+            GoRouteData.$route(
+              path: '/settings',
+              factory: $SettingsRouteExtension._fromState,
+            ),
+          ],
         ),
       ],
     );

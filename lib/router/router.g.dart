@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
       $topShellRoute,
       $homeRoute,
       $settingsRoute,
+      $colorPickerDialogRoute,
     ];
 
 RouteBase get $topShellRoute => StatefulShellRouteData.$route(
@@ -83,3 +84,26 @@ RouteBase get $settingsRoute => GoRouteData.$route(
       path: '/settings',
       factory: $SettingsRouteExtension._fromState,
     );
+
+RouteBase get $colorPickerDialogRoute => GoRouteData.$route(
+      path: '/color_picker_dialog',
+      factory: $ColorPickerDialogRouteExtension._fromState,
+    );
+
+extension $ColorPickerDialogRouteExtension on ColorPickerDialogRoute {
+  static ColorPickerDialogRoute _fromState(GoRouterState state) =>
+      const ColorPickerDialogRoute();
+
+  String get location => GoRouteData.$location(
+        '/color_picker_dialog',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}

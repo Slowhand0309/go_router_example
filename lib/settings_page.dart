@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router_example/router/router.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Settings Page'),
+        child: ElevatedButton(
+            onPressed: () => const ColorPickerDialogRoute().push(context),
+            child: const Text('Show Color Picker Dialog')),
       ),
     );
   }

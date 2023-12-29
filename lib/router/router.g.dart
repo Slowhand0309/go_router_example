@@ -16,6 +16,7 @@ RouteBase get $topShellRoute => StatefulShellRouteData.$route(
       factory: $TopShellRouteExtension._fromState,
       branches: [
         StatefulShellBranchData.$branch(
+          navigatorKey: HomeShellBranchData.$navigatorKey,
           routes: [
             GoRouteData.$route(
               path: '/home',
@@ -24,6 +25,7 @@ RouteBase get $topShellRoute => StatefulShellRouteData.$route(
           ],
         ),
         StatefulShellBranchData.$branch(
+          navigatorKey: SettingsShellBranchData.$navigatorKey,
           routes: [
             GoRouteData.$route(
               path: '/settings',

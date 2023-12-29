@@ -6,9 +6,16 @@ import 'package:go_router_example/top_page.dart';
 
 part 'router.g.dart';
 
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> homeNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> settingsNavigatorKey =
+    GlobalKey<NavigatorState>();
+
 final router = GoRouter(
   routes: $appRoutes,
   initialLocation: HomeRoute.path,
+  navigatorKey: rootNavigatorKey,
 );
 
 @TypedStatefulShellRoute<TopShellRoute>(
@@ -28,6 +35,8 @@ final router = GoRouter(
 class TopShellRoute extends StatefulShellRouteData {
   const TopShellRoute();
 
+  static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
+
   @override
   Widget builder(
     BuildContext context,
@@ -40,10 +49,12 @@ class TopShellRoute extends StatefulShellRouteData {
 
 class HomeShellBranchData extends StatefulShellBranchData {
   const HomeShellBranchData();
+  static final GlobalKey<NavigatorState> $navigatorKey = homeNavigatorKey;
 }
 
 class SettingsShellBranchData extends StatefulShellBranchData {
   const SettingsShellBranchData();
+  static final GlobalKey<NavigatorState> $navigatorKey = settingsNavigatorKey;
 }
 
 @TypedGoRoute<HomeRoute>(
